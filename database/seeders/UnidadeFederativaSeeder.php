@@ -1,0 +1,172 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\UnidadeFederativa;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+
+class UnidadeFederativaSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $unidadesFederativas = [
+            [
+                'id' => 1,
+                'sigla' => 'AC',
+                'nome' => 'Acre'
+            ],
+            [
+                'id' => 2,
+                'sigla' => 'AL',
+                'nome' => 'Alagoas'
+            ],
+            [
+                'id' => 3,
+                'sigla' => 'AP',
+                'nome' => 'Amapá'
+            ],
+            [
+                'id' => 4,
+                'sigla' => 'AM',
+                'nome' => 'Amazonas'
+            ],
+            [
+                'id' => 5,
+                'sigla' => 'BA',
+                'nome' => 'Bahia'
+            ],
+            [
+                'id' => 6,
+                'sigla' => 'CE',
+                'nome' => 'Ceará'
+            ],
+            [
+                'id' => 7,
+                'sigla' => 'DF',
+                'nome' => 'Distrito Federal'
+            ],
+            [
+                'id' => 8,
+                'sigla' => 'ES',
+                'nome' => 'Espirito Santo'
+            ],
+            [
+                'id' => 9,
+                'sigla' => 'GO',
+                'nome' => 'Goiás'
+            ],
+            [
+                'id' => 10,
+                'sigla' => 'MA',
+                'nome' => 'Maranhão'
+            ],
+            [
+                'id' => 11,
+                'sigla' => 'MT',
+                'nome' => 'Mato Grosso'
+            ],
+            [
+                'id' => 12,
+                'sigla' => 'MS',
+                'nome' => 'Mato Grosso do Sul'
+            ],
+            [
+                'id' => 13,
+                'sigla' => 'MG',
+                'nome' => 'Minas Gerais'
+            ],
+            [
+                'id' => 14,
+                'sigla' => 'PA',
+                'nome' => 'Pará'
+            ],
+            [
+                'id' => 15,
+                'sigla' => 'PB',
+                'nome' => 'Paraíba'
+            ],
+            [
+                'id' => 16,
+                'sigla' => 'PR',
+                'nome' => 'Paraná'
+            ],
+            [
+                'id' => 17,
+                'sigla' => 'PE',
+                'nome' => 'Pernanbuco'
+            ],
+            [
+                'id' => 18,
+                'sigla' => 'PI',
+                'nome' => 'Piauí'
+            ],
+            [
+                'id' => 19,
+                'sigla' => 'RJ',
+                'nome' => 'Rio de Janeiro'
+            ],
+            [
+                'id' => 20,
+                'sigla' => 'RN',
+                'nome' => 'Rio Grande do Norte'
+            ],
+            [
+                'id' => 21,
+                'sigla' => 'RS',
+                'nome' => 'Rio Grande do Sul'
+            ],
+            [
+                'id' => 22,
+                'sigla' => 'RO',
+                'nome' => 'Rondônia'
+            ],
+            [
+                'id' => 23,
+                'sigla' => 'RR',
+                'nome' => 'Roraima'
+            ],
+            [
+                'id' => 24,
+                'sigla' => 'SC',
+                'nome' => 'Santa Catarina'
+            ],
+            [
+                'id' => 25,
+                'sigla' => 'SP',
+                'nome' => 'São Paulo'
+            ],
+            [
+                'id' => 26,
+                'sigla' => 'SE',
+                'nome' => 'Sergipe'
+            ],
+            [
+                'id' => 27,
+                'sigla' => 'TO',
+                'nome' => 'Tocantins'
+            ],
+        ];
+
+        try {
+            DB::beginTransaction();
+
+            foreach ($unidadesFederativas as $uf) {
+                UnidadeFederativa::updateOrCreate($uf);
+            }
+
+            DB::commit();
+
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            Log::emergency("Erro ao efetuar o seeding da tabela unidades_federativas. ".$exception->getMessage());
+            Log::debug($exception);
+        }
+    }
+}
